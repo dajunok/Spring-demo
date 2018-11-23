@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--
+	<bean id="empService" class="liu.demo.EmpService" autowire="byName"/>
+	<bean id="empService" class="liu.demo.EmpService">
+	    <property name="empDao" ref="empDao"/>
+	</bean>
+	<bean id="userDao" class="liu.demo.UserDao"/>
+	<bean id="dao" class="liu.demo.EmpDao" autowire-candidate="false"/>
+	<bean id="empDao" class="liu.demo.EmpDao"/> -->
+	
+	<bean id="empService" class="liu.demo.EmpService" autowire="byName"/>
+	<bean id="empDao" class="liu.demo.EmpDao"/>	
+	
+	
+</beans>

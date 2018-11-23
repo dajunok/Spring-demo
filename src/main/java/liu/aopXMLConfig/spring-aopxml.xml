@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.3.xsd
+						http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--定义切面bean -->
+	<bean id="xmlAspect" class="liu.aopXMLConfig.XMLAspect"/> 
+	
+	<!-- 定义目标bean -->
+	<bean id="coderProjectService" class="liu.aopXMLConfig.CoderProjectServiceImpl"/>
+	
+	<!-- 定义切面的配置-->
+	<aop:config>
+		<aop:aspect ref="xmlAspect">
+			<!--定义一个切点 -->
+			<aop:pointcut  id="getProjectInfo" expression="execution(* liu.aopXMLConfig.CoderProjectServiceImpl.getProjectInfo(..))" />
+			<!-- 定义四类通知-->
+			<aop:before method="before" pointcut="execution(* liu.aopXMLConfig.CoderProjectServiceImpl.getProjectInfo(..)) and args(pro)"/>
+			<aop:after method="after" pointcut-ref="getProjectInfo"/>
+			<aop:after-returning method="afterReturning" pointcut-ref="getProjectInfo"/>
+			<!-- 定义环绕通知 -->
+			<aop:around method="around" pointcut-ref="getProjectInfo"/>
+			<!--定义增强类  -->
+			<aop:declare-parents types-matching="liu.aopXMLConfig.CoderProjectServiceImpl+" 
+				implement-interface="liu.aopXMLConfig.CheckExist" default-impl="liu.aopXMLConfig.CheckExistImp"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 定义一个project bean，用来传给接入点方法 -->
+	<bean id="project" class="liu.aopXMLConfig.CoderProject">
+		<property name="id" value="1"/>
+		<property name="projectName" value="云管理平台"/>
+		<property name="projectVersion" value="V1.0"/>
+		<property name="projectDesc" value="云存储管理平台"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" value="#{@systemProperties}" />
+        <property name="targetMethod" value="putAll" />
+        <property name="arguments">
+            <props>
+                <prop key="moaLogPath">/home/logs/moa-service/dispatch-video-service</prop>
+                <prop key="moaPort">13601</prop>
+                <prop key="protocol">MIX</prop>
+                <prop key="runMode">online</prop>
+                <prop key="momo.log.name">./log4m_video.properties</prop>
+                <prop key="momo.alarm.appname">dispatch-video-service</prop>
+                <prop key="redisClientTimeout">500</prop>
+                <prop key="warmupSeconds">60</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

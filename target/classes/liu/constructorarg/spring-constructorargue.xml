@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 说明：<constructor-arg name="id" value="1"/>也可以改成<constructor-arg index="0" value="1"/>方式；boolean的值既可以用0/1填充，也可以用true/false填充。 -->
+	<bean id="student" class="liu.constructorarg.Student">
+		<constructor-arg name="id" value="1"/>		
+		<constructor-arg name="name" value="student"/>
+		<constructor-arg name="dream">
+			<list>
+				<value>soldier</value>
+	            <value>scientist</value>
+	            <value>pilot</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="score">
+			<map>
+				<entry key="math" value="90"/>
+				<entry key="english" value="85"/>
+			</map>
+		</constructor-arg>
+		<constructor-arg name="graduation" value="false"/>
+	</bean>
+
+</beans>
